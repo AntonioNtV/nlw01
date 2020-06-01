@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts"
+    "dev": "ts-node-dev --poll src/server.ts",
+    "start": "ts-node src/server.ts"
   },
   "keywords": [],
   "author": "Antonio Bertino de Vasconcelos Cabral Neto",
