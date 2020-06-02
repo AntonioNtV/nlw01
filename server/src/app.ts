@@ -1,6 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import routes from './routes'
+import knex from 'knex'
+import path from 'path'
 
 class App {
     public express: express.Application
@@ -19,7 +21,12 @@ class App {
     }
 
     private database() {
-
+        knex({
+            client: 'sqlite',
+            connection: {
+                filename: path.resolve(__dirname, '..', 'database', 'database.sqlite')
+            }
+        })
     }
 
     private routes() {
