@@ -27,7 +27,7 @@ class PointsController {
             city,
             uf,
             adress_number: adressNumber,
-            image: 'image-fake',
+            image: 'https://images.unsplash.com/photo-1561385945-c99789cd12d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80',
         }
     
         const insertedIds = await trx('points').insert(point)
