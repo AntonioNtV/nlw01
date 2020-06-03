@@ -6,7 +6,6 @@ COPY package*.json ./
 RUN npm install
 
 COPY . . 
-RUN rm -rf src/database/database.sqlite
 
 RUN npm run migrations
 RUN npm run seed
