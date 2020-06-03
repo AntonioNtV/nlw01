@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import routes from './routes'
-import knex from 'knex'
 import path from 'path'
 
 class App {
@@ -17,6 +16,7 @@ class App {
     private middlewares() {
         this.express.use(cors())
         this.express.use(express.json())
+        this.express.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')))
     }
 
     private routes() {
