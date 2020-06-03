@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "migrations": "knex migrate:latest knexfile.ts migrate:latest",
+    "migrations": "knex --knexfile knexfile.ts migrate:latest",
+    "seed": "knex --knexfile knexfile.ts seed:run",
     "dev": "ts-node-dev --poll src/server.ts",
     "start": "ts-node src/server.ts"
   },
