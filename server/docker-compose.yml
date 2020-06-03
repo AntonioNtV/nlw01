@@ -9,7 +9,4 @@ services:
         ports:
             - "3000:3000"
         volumes: 
-            - dev:/usr/app   
-
-volumes:
-    dev:
+            - .:/usr/app
