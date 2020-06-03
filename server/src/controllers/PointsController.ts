@@ -50,7 +50,7 @@ class PointsController {
             await trx('points_items').insert(pointsItems)
         }
     
-        trx.commit()
+        await trx.commit()
     
         return res.json({ 
             point_id,
@@ -60,11 +60,22 @@ class PointsController {
     }
 
     async index(req: Request, res: Response) {
+        const { city, uf, items } = req.query
 
-        const points = await knex('points').select('*')
+        const parsedItems = String(items)
+        .split(',')
+        .map( item => { return Number(item.trim()) })
+
+        const points = await knex('points')
+        .join('points_items', 'points.id', '=', 'points_items.point_id')
+        .whereIn('points_items.item_id', parsedItems)
+        .where('city', String(city))
+        .where('uf', String(uf))
+        .distinct()
+        .select('points.*')
+
 
         return res.json(points)
-
     }
 
    async show (req: Request, res: Response) {
