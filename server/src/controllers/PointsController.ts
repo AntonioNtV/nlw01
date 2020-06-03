@@ -17,8 +17,8 @@ class PointsController {
         } = req.body
     
         const trx = await knex.transaction()
-    
-        const insertedIds = await trx('points').insert({
+
+        const point = {
             name,
             email,
             whatsapp,
@@ -28,13 +28,16 @@ class PointsController {
             uf,
             adress_number: adressNumber,
             image: 'image-fake',
-        })
+        }
+    
+        const insertedIds = await trx('points').insert(point)
         
-        
+        const point_id = insertedIds[0]
+
         const pointsItems = items.map( (item_id: number) => {
             return {
                 item_id,
-                point_id: insertedIds[0]
+                point_id
             }
         })
         
@@ -49,7 +52,10 @@ class PointsController {
     
         trx.commit()
     
-        return res.json({ "sucess": true })
+        return res.json({ 
+            point_id,
+            ...point
+         })
 
     }
 

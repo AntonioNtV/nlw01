@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import PointsController from './controllers/PointsController'
 import ItemsController from './controllers/ItemsController'
+import knex from './database/connections'
 
 const routes = Router()
 
