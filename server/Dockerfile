@@ -7,6 +7,9 @@ RUN npm install
 
 COPY . . 
 
+RUN npm run migrations
+RUN npm run seed
+
 EXPOSE 3000
 
 CMD ["npm", "run", "dev"]
