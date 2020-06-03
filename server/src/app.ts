@@ -21,7 +21,7 @@ class App {
     }
 
     private database() {
-        knex({
+        const connection = knex({
             client: 'sqlite',
             connection: {
                 filename: path.resolve(__dirname, '..', 'database', 'database.sqlite')
