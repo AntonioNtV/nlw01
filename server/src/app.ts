@@ -25,7 +25,8 @@ class App {
             client: 'sqlite',
             connection: {
                 filename: path.resolve(__dirname, '..', 'database', 'database.sqlite')
-            }
+            },
+            useNullAsDefault: true
         })
     }
 
