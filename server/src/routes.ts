@@ -8,6 +8,7 @@ const routes = Router()
 
 //points
 routes.get('/points', PointsController.index)
+routes.get('/points/:id', PointsController.show)
 routes.post('/points', PointsController.create)
 
 

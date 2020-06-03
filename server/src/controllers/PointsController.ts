@@ -66,6 +66,26 @@ class PointsController {
         return res.json(points)
 
     }
+
+   async show (req: Request, res: Response) {
+        const { id } = req.params
+
+        const point = await knex('points').where('id', id).first()
+
+        if (!point) {
+            return res.status(400).json({ 'status': 'Point is not registered '})
+        }
+
+        const items = await knex('items')
+        .join('points_items', 'items.id', '=', 'points_items.item_id')
+        .where('points_items.point_id', id)
+        .select('items.title').select('items.image')
+        return res.json({
+            ...point,
+            items
+        })
+
+    }
 }
 
 export default new PointsController
